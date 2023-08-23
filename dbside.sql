@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 02-08-2023 a las 18:34:42
+-- Tiempo de generación: 23-08-2023 a las 08:57:10
 -- Versión del servidor: 8.0.30
 -- Versión de PHP: 8.1.10
 
@@ -85,6 +85,18 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `changeStatusR` (IN `in_user_id` INT
 		UPDATE catrfcs SET bActive = 0 WHERE txtrfc = in_rfc;	
 		
 	END IF;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insisr1` (IN `in_fk_eIdDeclaracion` INT, IN `in_flTotalIngresosIsr` DECIMAL(12,2), IN `in_txtCopropiedad` VARCHAR(10), IN `in_flEfectivos` DECIMAL(12,2), IN `in_flDescuentos` DECIMAL(12,2), IN `in_flIngresosDisminuir` DECIMAL(12,2), IN `in_flIngresosAdicionales` DECIMAL(12,2), IN `in_flTotalIngresos_Determinacion` DECIMAL(12,2), IN `in_flBaseGravable` DECIMAL(12,2), IN `in_txtTasaAplicable` VARCHAR(10), IN `in_flImpuestoMensual` DECIMAL(12,2), IN `in_flIsrRetMorales` DECIMAL(12,2), IN `in_flImpuestoCargoIsr` DECIMAL(12,2), IN `in_flCntAcargo` DECIMAL(12,2), IN `in_flTotalContribuciones` DECIMAL(12,2), IN `in_flSubsidio` DECIMAL(12,2), IN `in_flCompensacionesPago` DECIMAL(12,2), IN `in_flompensaciones` DECIMAL(12,2), IN `in_flAplicacionesPago` DECIMAL(12,2), IN `in_flTotalContribucionesPago` DECIMAL(12,2), IN `in_flAplicaciones` DECIMAL(12,2), IN `in_flCantidadCargo` DECIMAL(12,2), IN `in_flCantidadPago` DECIMAL(12,2))   BEGIN
+
+	INSERT INTO `isr_1`( `fk_eIdDeclaracion`,flTotalIngresosIsr, `txtCopropiedad`, `flEfectivos`, `flDescuentos`, `flIngresosDisminuir`, `flIngresosAdicionales`, `flTotalIngresos_Determinacion`, `flBaseGravable`, `txtTasaAplicable`, `flImpuestoMensual`, `flIsrRetMorales`, `flImpuestoCargoIsr`, `flCntAcargo`, `flTotalContribuciones`, `flSubsidio`, `flCompensacionesPago`, `flompensaciones`, `flAplicacionesPago`, `flTotalContribucionesPago`, `flAplicaciones`, `flCantidadCargo`, `flCantidadPago`) VALUES (in_fk_eIdDeclaracion,
+in_flTotalIngresosIsr,in_txtCopropiedad,in_flEfectivos,in_flDescuentos,in_flIngresosDisminuir,in_flIngresosAdicionales,in_flTotalIngresos_Determinacion,in_flBaseGravable,in_txtTasaAplicable,in_flImpuestoMensual,in_flIsrRetMorales,in_flImpuestoCargoIsr,in_flCntAcargo,in_flTotalContribuciones,in_flSubsidio,in_flCompensacionesPago,in_flompensaciones,in_flAplicacionesPago,in_flTotalContribucionesPago,in_flAplicaciones,in_flCantidadCargo,in_flCantidadPago);
+
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insiva1` (IN `in_fk_eIdDeclaracion` INT, `in_flActGravadas16` DECIMAL(12,2), `in_flActGravadas_1` DECIMAL(12,2), `in_flActExentas` DECIMAL(12,2), `in_flNoObjeto` DECIMAL(12,2), `in_flIVA16` DECIMAL(12,2), `in_flIVACargo` DECIMAL(12,2), `in_flIVANoCobrado` DECIMAL(12,2), `in_flIVARetenido` DECIMAL(12,2), `in_flIVAPeriodo` DECIMAL(12,2), `in_flIVAPeriodoDesc` DECIMAL(12,2), `in_flCantidadCargo` DECIMAL(12,2), `in_flAcreditamiento` DECIMAL(12,2), `in_flCantidadCargoT` DECIMAL(12,2), `in_flCantidadCargo_F` DECIMAL(12,2), `in_flCantidadCargoF` DECIMAL(12,2), `in_flAcargo2` DECIMAL(12,2), `in_flTotCont2` DECIMAL(12,2), `in_txtComAplicar` VARCHAR(5), `in_flcompensaciones` DECIMAL(12,2), `in_txtEstimulos2` VARCHAR(5), `in_flestimulos` DECIMAL(12,2), `in_flTotAplic2` DECIMAL(12,2), `in_flTotContrib2` DECIMAL(12,2), `in_flTotAplic2_1` DECIMAL(12,2), `in_flCntAcargo` DECIMAL(12,2), `in_flAPagar2` DECIMAL(12,2))   BEGIN
+	INSERT INTO iva_1(fk_eIdDeclaracion,flActGravadas16,flActGravadas_1,flActExentas,flNoObjeto,flIVA16,flIVACargo,flIVANoCobrado,flIVARetenido,flIVAPeriodo,flIVAPeriodoDesc,flCantidadCargo,flAcreditamiento,flCantidadCargoT,flCantidadCargo_F,flCantidadCargoF,flAcargo2,flTotCont2,txtComAplicar,flcompensaciones,txtEstimulos2,flestimulos,flTotAplic2,flTotContrib2,flTotAplic2_1,flCntAcargo,flAPagar2)
+	values(in_fk_eIdDeclaracion,in_flActGravadas16,in_flActGravadas_1,in_flActExentas,in_flNoObjeto,in_flIVA16,in_flIVACargo,in_flIVANoCobrado,in_flIVARetenido,in_flIVAPeriodo,in_flIVAPeriodoDesc,in_flCantidadCargo,in_flAcreditamiento,in_flCantidadCargoT,in_flCantidadCargo_F,in_flCantidadCargoF,in_flAcargo2,in_flTotCont2,in_txtComAplicar,in_flcompensaciones,in_txtEstimulos2,in_flestimulos,in_flTotAplic2,in_flTotContrib2,in_flTotAplic2_1,in_flCntAcargo,in_flAPagar2);
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insNewUser` (IN `in_userType_id` INT, IN `in_career_id` INT, IN `in_departamento` VARCHAR(50), IN `in_group_id` INT, IN `in_personName` VARCHAR(50), IN `in_personLName` VARCHAR(100), IN `in_personEmail` VARCHAR(200), IN `in_userCve` VARCHAR(50))   BEGIN
@@ -307,19 +319,7 @@ CREATE TABLE `catstatements` (
 --
 
 INSERT INTO `catstatements` (`eIdStatement`, `txtPeriodicidad`, `txtRFC`, `txtNumCtrl`, `txtEjercicio`, `txtPeriodo`, `txtTipoDeclaracion`, `isr1`, `isr2`, `isr3`, `iva1`, `iva2`, `feCreatedAt`, `feUpdatedAt`, `bActive`) VALUES
-(1, '3-Trimestral', 'FEAJ850930GV1', '20230001', '2021', 'Enero-Marzo', 'Normal', 1, 0, 0, 0, 0, '2023-06-28 12:06:00', '2023-06-28 12:06:00', b'1'),
-(2, '3-Trimestral', 'FEAJ850930GV1', '20230001', '2020', 'Enero-Marzo', 'Normal', 0, 0, 0, 0, 1, '2023-06-29 11:06:00', '2023-06-29 11:06:00', b'1'),
-(3, '1-Mensual', 'FEAJ850930GV1', '20230001', '2020', 'Agosto', 'Normal', 0, 0, 0, 0, 0, '2023-06-29 12:06:00', '2023-06-29 12:06:00', b'1'),
-(4, '1-Mensual', 'FEAJ850930GV1', '20230001', '2020', 'Octubre', 'Normal con Corrección Fiscal', 0, 0, 0, 0, 0, '2023-06-30 12:06:00', '2023-06-30 12:06:00', b'1'),
-(5, '3-Trimestral', 'FEAJ850930GV1', '20230001', '2021', 'Abril-Junio', 'Normal', 1, 0, 1, 0, 1, '2023-07-03 01:07:00', '2023-07-03 01:07:00', b'1'),
-(6, '2-Bimestral', 'FEAJ850930GV1', '20230001', '2023', 'Mayo-Junio', 'Normal', 1, 0, 0, 0, 1, '2023-07-03 01:07:00', '2023-07-03 01:07:00', b'1'),
-(7, '9-Sin periodo', 'FEAJ850930GV1', '20230001', '2021', '', 'Normal', 1, 0, 0, 0, 1, '2023-07-04 10:07:00', '2023-07-04 10:07:00', b'1'),
-(8, '5-Semestral (A)', 'FEAJ850930GV1', '20230001', '2021', 'Enero-Junio', 'Normal', 1, 0, 0, 0, 1, '2023-07-04 10:07:00', '2023-07-04 10:07:00', b'1'),
-(9, '5-Semestral (A)', 'FEAJ850930GV1', '20230001', '2022', 'Enero-Junio', 'Normal', 1, 0, 0, 0, 1, '2023-07-04 02:07:00', '2023-07-04 02:07:00', b'1'),
-(10, '3-Trimestral', 'FEAJ850930GV1', '20230001', '2020', '', 'Normal', 1, 0, 0, 0, 1, '2023-07-05 02:07:00', '2023-07-05 02:07:00', b'1'),
-(11, '3-Trimestral', 'FEAJ850930GV1', '20230001', '2021', 'Abril-Junio', 'Normal', 1, 0, 0, 0, 1, '2023-07-05 02:07:00', '2023-07-05 02:07:00', b'1'),
-(12, '1-Mensual', 'FEAJ850930GV1', '20230001', '2020', 'Febrero', 'Normal', 1, 0, 0, 0, 1, '2023-08-02 09:08:00', '2023-08-02 09:08:00', b'1'),
-(13, '3-Trimestral', 'FEAJ850930GV1', '20230001', '2021', 'Enero-Marzo', 'Normal', 1, 0, 0, 0, 0, '2023-08-02 09:08:00', '2023-08-02 09:08:00', b'1');
+(1, '3-Trimestral', 'FEAJ850930GV1', '20230001', '2023', 'Abril-Junio', 'Normal', 1, 0, 0, 0, 1, '2023-08-23 01:08:00', '2023-08-23 01:08:00', b'1');
 
 -- --------------------------------------------------------
 
@@ -359,7 +359,7 @@ CREATE TABLE `catusers` (
 INSERT INTO `catusers` (`user_id`, `person_id`, `txtPass`, `bActive`, `cveUser`, `userType`, `career`, `tgroup`, `departament`) VALUES
 (1, 1, '04d63f34c0f706111fcde593ab7f0a77', b'1', 'ADMIN01', 1, NULL, NULL, NULL),
 (2, 3, '5e315235d0bad549068b21c039f424ad', b'1', '0399', 3, 1, NULL, ''),
-(3, 4, '4f02676d5e165980c5a21332c1bbc81f', b'1', '20230001', 4, NULL, 1, ''),
+(3, 4, '05e2b841411d095d8836e21d8f10ee79', b'1', '20230001', 4, NULL, 1, ''),
 (4, 5, 'a9b7ba70783b617e9998dc4dd82eb3c5', b'1', '1000', 1, NULL, NULL, 'Sistemas');
 
 -- --------------------------------------------------------
@@ -404,32 +404,174 @@ CREATE TABLE `groupcareer` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `isrsimp`
+-- Estructura Stand-in para la vista `isrrfcdec`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `isrrfcdec` (
+`eIdStatement` int
+,`txtRFC` varchar(15)
+,`txtNumCtrl` varchar(10)
+,`name` varchar(255)
+,`lastName` varchar(255)
+,`txtPeriodicidad` varchar(40)
+,`txtEjercicio` varchar(10)
+,`txtPeriodo` varchar(50)
+,`txtTipoDeclaracion` varchar(50)
+,`isr1` tinyint(1)
+,`bActive` bit(1)
+,`flTotalIngresosIsr` decimal(12,2)
+,`txtCopropiedad` varchar(10)
+,`flEfectivos` decimal(12,2)
+,`flDescuentos` decimal(12,2)
+,`flIngresosDisminuir` decimal(12,2)
+,`flIngresosAdicionales` decimal(12,2)
+,`flTotalIngresos_Determinacion` decimal(12,2)
+,`flBaseGravable` decimal(12,2)
+,`txtTasaAplicable` varchar(10)
+,`flImpuestoMensual` decimal(12,2)
+,`flIsrRetMorales` decimal(12,2)
+,`flImpuestoCargoIsr` decimal(12,2)
+,`flCntAcargo` decimal(12,2)
+,`flTotalContribuciones` decimal(12,2)
+,`flSubsidio` decimal(12,2)
+,`flCompensacionesPago` decimal(12,2)
+,`flompensaciones` decimal(12,2)
+,`flAplicacionesPago` decimal(12,2)
+,`flTotalContribucionesPago` decimal(12,2)
+,`flAplicaciones` decimal(12,2)
+,`flCantidadCargo` decimal(12,2)
+,`flCantidadPago` decimal(12,2)
+,`bIsr1Active` bit(1)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `isr_1`
 --
 
-CREATE TABLE `isrsimp` (
-  `eIdISR1` int NOT NULL,
-  `fk_eIdDeclaracion` int DEFAULT NULL,
-  `txtTotIngresos` varchar(20) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
-  `txtDescBonif` varchar(20) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
-  `txtIngresosDisminuir` varchar(20) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
-  `txtIngresosAdicionales` varchar(20) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
-  `txtISRRetenido` varchar(20) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
-  `txtSubsidio` varchar(20) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
-  `txtCompensaciones` varchar(20) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
-  `txtCantidadPagar` varchar(20) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
-  `feCreatedAt` datetime DEFAULT NULL,
-  `feUpdatedAt` datetime DEFAULT NULL
+CREATE TABLE `isr_1` (
+  `eIdIsr_1` int NOT NULL,
+  `flTotalIngresosIsr` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `fk_eIdDeclaracion` int NOT NULL,
+  `txtCopropiedad` varchar(10) COLLATE utf8mb4_spanish_ci DEFAULT 'NO',
+  `flEfectivos` decimal(12,2) DEFAULT '0.00',
+  `flDescuentos` decimal(12,2) DEFAULT '0.00',
+  `flIngresosDisminuir` decimal(12,2) DEFAULT '0.00',
+  `flIngresosAdicionales` decimal(12,2) DEFAULT '0.00',
+  `flTotalIngresos_Determinacion` decimal(12,2) DEFAULT '0.00',
+  `flBaseGravable` decimal(12,2) DEFAULT '0.00',
+  `txtTasaAplicable` varchar(10) COLLATE utf8mb4_spanish_ci DEFAULT '0.0%',
+  `flImpuestoMensual` decimal(12,2) DEFAULT '0.00',
+  `flIsrRetMorales` decimal(12,2) DEFAULT '0.00',
+  `flImpuestoCargoIsr` decimal(12,2) DEFAULT '0.00',
+  `flCntAcargo` decimal(12,2) DEFAULT '0.00',
+  `flTotalContribuciones` decimal(12,2) DEFAULT '0.00',
+  `flSubsidio` decimal(12,2) DEFAULT '0.00',
+  `flCompensacionesPago` decimal(12,2) DEFAULT '0.00',
+  `flompensaciones` decimal(12,2) DEFAULT '0.00',
+  `flAplicacionesPago` decimal(12,2) DEFAULT '0.00',
+  `flTotalContribucionesPago` decimal(12,2) DEFAULT '0.00',
+  `flAplicaciones` decimal(12,2) DEFAULT '0.00',
+  `flCantidadCargo` decimal(12,2) DEFAULT '0.00',
+  `flCantidadPago` decimal(12,2) DEFAULT '0.00',
+  `dtCreatedAt` datetime DEFAULT CURRENT_TIMESTAMP,
+  `dtUpdatedAt` datetime DEFAULT CURRENT_TIMESTAMP,
+  `bIsr1Active` bit(1) DEFAULT b'1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
--- Volcado de datos para la tabla `isrsimp`
+-- Volcado de datos para la tabla `isr_1`
 --
 
-INSERT INTO `isrsimp` (`eIdISR1`, `fk_eIdDeclaracion`, `txtTotIngresos`, `txtDescBonif`, `txtIngresosDisminuir`, `txtIngresosAdicionales`, `txtISRRetenido`, `txtSubsidio`, `txtCompensaciones`, `txtCantidadPagar`, `feCreatedAt`, `feUpdatedAt`) VALUES
-(1, 9, '54000', '0', '0', '0', '675', '0', '0', '135.00', '2023-07-04 03:07:00', '2023-07-04 03:07:00'),
-(2, 9, '54000', '0', '0', '0', '675', '0', '0', '135.00', '2023-07-04 03:07:00', '2023-07-04 03:07:00'),
-(3, 13, '54000', '123', '0', '0', '0', '0', '0', '808.15', '2023-08-02 09:08:00', '2023-08-02 09:08:00');
+INSERT INTO `isr_1` (`eIdIsr_1`, `flTotalIngresosIsr`, `fk_eIdDeclaracion`, `txtCopropiedad`, `flEfectivos`, `flDescuentos`, `flIngresosDisminuir`, `flIngresosAdicionales`, `flTotalIngresos_Determinacion`, `flBaseGravable`, `txtTasaAplicable`, `flImpuestoMensual`, `flIsrRetMorales`, `flImpuestoCargoIsr`, `flCntAcargo`, `flTotalContribuciones`, `flSubsidio`, `flCompensacionesPago`, `flompensaciones`, `flAplicacionesPago`, `flTotalContribucionesPago`, `flAplicaciones`, `flCantidadCargo`, `flCantidadPago`, `dtCreatedAt`, `dtUpdatedAt`, `bIsr1Active`) VALUES
+(2, 175000.00, 1, 'No', 175000.00, 1254.00, 2000.00, 0.00, 171746.00, 171746.00, '2.00%', 3434.92, 1520.00, 1914.92, 1914.92, 1914.92, 123.00, 100.00, 100.00, 0.00, 1914.92, 0.00, 1691.92, 1691.92, '2023-08-23 02:22:32', '2023-08-23 02:22:32', b'1');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `ivarfcdec`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `ivarfcdec` (
+`eIdStatement` int
+,`txtRFC` varchar(15)
+,`txtNumCtrl` varchar(10)
+,`txtPeriodicidad` varchar(40)
+,`txtEjercicio` varchar(10)
+,`txtPeriodo` varchar(50)
+,`txtTipoDeclaracion` varchar(50)
+,`isr1` tinyint(1)
+,`iva1` tinyint(1)
+,`bActive` bit(1)
+,`flActGravadas16` decimal(12,2)
+,`flActGravadas_1` decimal(12,2)
+,`flActExentas` decimal(12,2)
+,`flNoObjeto` decimal(12,2)
+,`flIVA16` decimal(12,2)
+,`flIVACargo` decimal(12,2)
+,`flIVANoCobrado` decimal(12,2)
+,`flIVARetenido` decimal(12,2)
+,`flIVAPeriodo` decimal(12,2)
+,`flIVAPeriodoDesc` decimal(12,2)
+,`flCantidadCargo` decimal(12,2)
+,`flAcreditamiento` decimal(12,2)
+,`flCantidadCargoT` decimal(12,2)
+,`flCantidadCargo_F` decimal(12,2)
+,`flCantidadCargoF` decimal(12,2)
+,`flAcargo2` decimal(12,2)
+,`flTotCont2` decimal(12,2)
+,`txtComAplicar` varchar(5)
+,`flcompensaciones` decimal(12,2)
+,`txtEstimulos2` varchar(5)
+,`flestimulos` decimal(12,2)
+,`flTotAplic2` decimal(12,2)
+,`flTotContrib2` decimal(12,2)
+,`flTotAplic2_1` decimal(12,2)
+,`flCntAcargo` decimal(12,2)
+,`flAPagar2` decimal(12,2)
+,`bActiveIva1` bit(1)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `iva_1`
+--
+
+CREATE TABLE `iva_1` (
+  `eIdIva_1` int NOT NULL,
+  `fk_eIdDeclaracion` int NOT NULL,
+  `flActGravadas16` decimal(12,2) DEFAULT '0.00',
+  `flActGravadas_1` decimal(12,2) DEFAULT '0.00',
+  `flActExentas` decimal(12,2) DEFAULT '0.00',
+  `flNoObjeto` decimal(12,2) DEFAULT '0.00',
+  `flIVA16` decimal(12,2) DEFAULT '0.00',
+  `flIVACargo` decimal(12,2) DEFAULT '0.00',
+  `flIVANoCobrado` decimal(12,2) DEFAULT '0.00',
+  `flIVARetenido` decimal(12,2) DEFAULT '0.00',
+  `flIVAPeriodo` decimal(12,2) DEFAULT '0.00',
+  `flIVAPeriodoDesc` decimal(12,2) DEFAULT '0.00',
+  `flCantidadCargo` decimal(12,2) DEFAULT '0.00',
+  `flAcreditamiento` decimal(12,2) DEFAULT '0.00',
+  `flCantidadCargoT` decimal(12,2) DEFAULT '0.00',
+  `flCantidadCargo_F` decimal(12,2) DEFAULT '0.00',
+  `flCantidadCargoF` decimal(12,2) DEFAULT '0.00',
+  `flAcargo2` decimal(12,2) DEFAULT '0.00',
+  `flTotCont2` decimal(12,2) DEFAULT '0.00',
+  `txtComAplicar` varchar(5) COLLATE utf8mb4_spanish_ci DEFAULT 'NO',
+  `flcompensaciones` decimal(12,2) DEFAULT '0.00',
+  `txtEstimulos2` varchar(5) COLLATE utf8mb4_spanish_ci DEFAULT 'NO',
+  `flestimulos` decimal(12,2) DEFAULT '0.00',
+  `flTotAplic2` decimal(12,2) DEFAULT '0.00',
+  `flTotContrib2` decimal(12,2) DEFAULT '0.00',
+  `flTotAplic2_1` decimal(12,2) DEFAULT '0.00',
+  `flCntAcargo` decimal(12,2) DEFAULT '0.00',
+  `flAPagar2` decimal(12,2) DEFAULT '0.00',
+  `dtCreatedAt` datetime DEFAULT CURRENT_TIMESTAMP,
+  `dtUpdatedAt` datetime DEFAULT CURRENT_TIMESTAMP,
+  `bActiveIva1` bit(1) DEFAULT b'1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 -- --------------------------------------------------------
 
@@ -493,6 +635,29 @@ CREATE TABLE `vwadmins` (
 ,`email` varchar(255)
 ,`cveUser` varchar(50)
 ,`userType` int
+);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura Stand-in para la vista `vwallactivitiesusr`
+-- (Véase abajo para la vista actual)
+--
+CREATE TABLE `vwallactivitiesusr` (
+`eIdStatement` int
+,`feCreatedAt` datetime
+,`activeStatement` bit(1)
+,`persona_id` int
+,`user_id` int
+,`name` varchar(255)
+,`lastName` varchar(255)
+,`cveUser` varchar(50)
+,`groupCve` varchar(15)
+,`feAssigned` date
+,`rfd_id` int
+,`txtRfc` varchar(20)
+,`txtRfcPass` varchar(50)
+,`bActive` bit(1)
 );
 
 -- --------------------------------------------------------
@@ -685,6 +850,24 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`adminSiDe`@`localhost` SQL SECURITY DEFINER 
 -- --------------------------------------------------------
 
 --
+-- Estructura para la vista `isrrfcdec`
+--
+DROP TABLE IF EXISTS `isrrfcdec`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `isrrfcdec`  AS SELECT `d`.`eIdStatement` AS `eIdStatement`, `d`.`txtRFC` AS `txtRFC`, `d`.`txtNumCtrl` AS `txtNumCtrl`, `u`.`name` AS `name`, `u`.`lastName` AS `lastName`, `d`.`txtPeriodicidad` AS `txtPeriodicidad`, `d`.`txtEjercicio` AS `txtEjercicio`, `d`.`txtPeriodo` AS `txtPeriodo`, `d`.`txtTipoDeclaracion` AS `txtTipoDeclaracion`, `d`.`isr1` AS `isr1`, `d`.`bActive` AS `bActive`, `i`.`flTotalIngresosIsr` AS `flTotalIngresosIsr`, `i`.`txtCopropiedad` AS `txtCopropiedad`, `i`.`flEfectivos` AS `flEfectivos`, `i`.`flDescuentos` AS `flDescuentos`, `i`.`flIngresosDisminuir` AS `flIngresosDisminuir`, `i`.`flIngresosAdicionales` AS `flIngresosAdicionales`, `i`.`flTotalIngresos_Determinacion` AS `flTotalIngresos_Determinacion`, `i`.`flBaseGravable` AS `flBaseGravable`, `i`.`txtTasaAplicable` AS `txtTasaAplicable`, `i`.`flImpuestoMensual` AS `flImpuestoMensual`, `i`.`flIsrRetMorales` AS `flIsrRetMorales`, `i`.`flImpuestoCargoIsr` AS `flImpuestoCargoIsr`, `i`.`flCntAcargo` AS `flCntAcargo`, `i`.`flTotalContribuciones` AS `flTotalContribuciones`, `i`.`flSubsidio` AS `flSubsidio`, `i`.`flCompensacionesPago` AS `flCompensacionesPago`, `i`.`flompensaciones` AS `flompensaciones`, `i`.`flAplicacionesPago` AS `flAplicacionesPago`, `i`.`flTotalContribucionesPago` AS `flTotalContribucionesPago`, `i`.`flAplicaciones` AS `flAplicaciones`, `i`.`flCantidadCargo` AS `flCantidadCargo`, `i`.`flCantidadPago` AS `flCantidadPago`, `i`.`bIsr1Active` AS `bIsr1Active` FROM ((`catstatements` `d` join `isr_1` `i` on((`d`.`eIdStatement` = `i`.`fk_eIdDeclaracion`))) join `vwallrfcs` `u` on((`u`.`txtRfc` = `d`.`txtRFC`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `ivarfcdec`
+--
+DROP TABLE IF EXISTS `ivarfcdec`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `ivarfcdec`  AS SELECT `d`.`eIdStatement` AS `eIdStatement`, `d`.`txtRFC` AS `txtRFC`, `d`.`txtNumCtrl` AS `txtNumCtrl`, `d`.`txtPeriodicidad` AS `txtPeriodicidad`, `d`.`txtEjercicio` AS `txtEjercicio`, `d`.`txtPeriodo` AS `txtPeriodo`, `d`.`txtTipoDeclaracion` AS `txtTipoDeclaracion`, `d`.`isr1` AS `isr1`, `d`.`iva1` AS `iva1`, `d`.`bActive` AS `bActive`, `i`.`flActGravadas16` AS `flActGravadas16`, `i`.`flActGravadas_1` AS `flActGravadas_1`, `i`.`flActExentas` AS `flActExentas`, `i`.`flNoObjeto` AS `flNoObjeto`, `i`.`flIVA16` AS `flIVA16`, `i`.`flIVACargo` AS `flIVACargo`, `i`.`flIVANoCobrado` AS `flIVANoCobrado`, `i`.`flIVARetenido` AS `flIVARetenido`, `i`.`flIVAPeriodo` AS `flIVAPeriodo`, `i`.`flIVAPeriodoDesc` AS `flIVAPeriodoDesc`, `i`.`flCantidadCargo` AS `flCantidadCargo`, `i`.`flAcreditamiento` AS `flAcreditamiento`, `i`.`flCantidadCargoT` AS `flCantidadCargoT`, `i`.`flCantidadCargo_F` AS `flCantidadCargo_F`, `i`.`flCantidadCargoF` AS `flCantidadCargoF`, `i`.`flAcargo2` AS `flAcargo2`, `i`.`flTotCont2` AS `flTotCont2`, `i`.`txtComAplicar` AS `txtComAplicar`, `i`.`flcompensaciones` AS `flcompensaciones`, `i`.`txtEstimulos2` AS `txtEstimulos2`, `i`.`flestimulos` AS `flestimulos`, `i`.`flTotAplic2` AS `flTotAplic2`, `i`.`flTotContrib2` AS `flTotContrib2`, `i`.`flTotAplic2_1` AS `flTotAplic2_1`, `i`.`flCntAcargo` AS `flCntAcargo`, `i`.`flAPagar2` AS `flAPagar2`, `i`.`bActiveIva1` AS `bActiveIva1` FROM (`catstatements` `d` join `iva_1` `i` on((`d`.`eIdStatement` = `i`.`fk_eIdDeclaracion`))) ;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura para la vista `viewgroups`
 --
 DROP TABLE IF EXISTS `viewgroups`;
@@ -708,6 +891,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`adminSiDe`@`localhost` SQL SECURITY DEFINER 
 DROP TABLE IF EXISTS `vwadmins`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`adminSiDe`@`localhost` SQL SECURITY DEFINER VIEW `vwadmins`  AS SELECT `p`.`persona_id` AS `persona_id`, `u`.`user_id` AS `user_id`, `p`.`name` AS `name`, `p`.`lastName` AS `lastName`, `p`.`email` AS `email`, `u`.`cveUser` AS `cveUser`, `u`.`userType` AS `userType` FROM ((`catpersonas` `p` join `catusers` `u` on((`u`.`person_id` = `p`.`persona_id`))) join `catusertypes` `ut` on((`u`.`userType` = `ut`.`type_id`))) WHERE (`u`.`userType` = 1) ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura para la vista `vwallactivitiesusr`
+--
+DROP TABLE IF EXISTS `vwallactivitiesusr`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vwallactivitiesusr`  AS SELECT `d`.`eIdStatement` AS `eIdStatement`, `d`.`feCreatedAt` AS `feCreatedAt`, `d`.`bActive` AS `activeStatement`, `r`.`persona_id` AS `persona_id`, `r`.`user_id` AS `user_id`, `r`.`name` AS `name`, `r`.`lastName` AS `lastName`, `r`.`cveUser` AS `cveUser`, `r`.`groupCve` AS `groupCve`, `r`.`feAssigned` AS `feAssigned`, `r`.`rfd_id` AS `rfd_id`, `r`.`txtRfc` AS `txtRfc`, `r`.`txtRfcPass` AS `txtRfcPass`, `r`.`bActive` AS `bActive` FROM (`catstatements` `d` join `vwallrfcs` `r` on((`d`.`txtRFC` = `r`.`txtRfc`))) WHERE (`r`.`bActive` = 1) ;
 
 -- --------------------------------------------------------
 
@@ -852,10 +1044,16 @@ ALTER TABLE `catusertypes`
   ADD PRIMARY KEY (`type_id`);
 
 --
--- Indices de la tabla `isrsimp`
+-- Indices de la tabla `isr_1`
 --
-ALTER TABLE `isrsimp`
-  ADD PRIMARY KEY (`eIdISR1`);
+ALTER TABLE `isr_1`
+  ADD PRIMARY KEY (`eIdIsr_1`);
+
+--
+-- Indices de la tabla `iva_1`
+--
+ALTER TABLE `iva_1`
+  ADD PRIMARY KEY (`eIdIva_1`);
 
 --
 -- Indices de la tabla `relteachergroup`
@@ -901,7 +1099,7 @@ ALTER TABLE `catrfcs`
 -- AUTO_INCREMENT de la tabla `catstatements`
 --
 ALTER TABLE `catstatements`
-  MODIFY `eIdStatement` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `eIdStatement` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `cattasks`
@@ -922,10 +1120,16 @@ ALTER TABLE `catusertypes`
   MODIFY `type_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `isrsimp`
+-- AUTO_INCREMENT de la tabla `isr_1`
 --
-ALTER TABLE `isrsimp`
-  MODIFY `eIdISR1` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `isr_1`
+  MODIFY `eIdIsr_1` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `iva_1`
+--
+ALTER TABLE `iva_1`
+  MODIFY `eIdIva_1` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `relteachergroup`
