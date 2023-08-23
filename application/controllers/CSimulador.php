@@ -81,9 +81,9 @@ class CSimulador extends CI_Controller {
 	}
 
 	public function iva_2(){
-		$info['totIngresos'] = $this->MSimulador->getTotalIng();
+		//$info['totIngresos'] = $this->MSimulador->getTotalIng();
 		$this->load->view('simulador/header');
-		$this->load->view('simulador/iva_2',$info);
+		$this->load->view('simulador/iva_2');
 		$this->load->view('simulador/footer');
 	}
 

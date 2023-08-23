@@ -13,8 +13,8 @@
 	</div>
 	<?php 
 		if($isr){
-			print_r($isr);
-		
+			$fechaCreacion = date("d/m/Y", strtotime($isr[0]['dtCreatedAt']."+ 1 days"));
+
 	 ?>
 	<br>
 	<section class="container">
@@ -70,7 +70,7 @@
 				<p class="text-normal">Vencimiento de la obligación:</p>
 			</div>
 			<div class="row-item-20">
-				<p class="text-normal-data" id="txtVencimiento" name="txtVencimiento">18/09/2022</p>
+				<p class="text-normal-data" id="txtVencimiento" name="txtVencimiento"><?php echo $fechaCreacion; ?></p>
 			</div>
 		</div>
 		<div class="d-flex flex-wrap ">
@@ -95,7 +95,7 @@
 				<p class="text-normal-data text-uppercase">¿los ingresos obtenidos por copropiedad?</p>
 			</div>
 			<div class="row-item-30">
-				<input disabled class="text-normal-data form-control" type="text" name="txtCopropiedad" id="txtCopropiedad" value="NO">
+				<input disabled class="text-normal-data form-control text-uppercase" type="text" name="txtCopropiedad" id="txtCopropiedad" value="<?php echo $isr[0]['txtCopropiedad']; ?>">
 			</div>
 		</div>
 		<div class="d-flex flex-wrap flex-item-25">
@@ -103,7 +103,7 @@
 				<p class="text-normal-data text-uppercase">total de ingresos efectivamente cobrados</p>
 			</div>
 			<div class="row-item-30">
-				<input disabled class="text-normal-data form-control text-end" type="text" name="txtEfectivos" id="txtEfectivos" value="54000.00">
+				<input disabled class="text-normal-data form-control text-end" type="text" name="txtEfectivos" id="txtEfectivos" value="<?php echo $isr[0]['flEfectivos']; ?>">
 			</div>
 		</div>
 		<hr>
@@ -112,7 +112,7 @@
 				<p class="text-normal-data text-uppercase">descuentos, devoluciones y bonificaciones </p>
 			</div>
 			<div class="row-item-30">
-				<input disabled class="text-normal-data form-control text-end" type="text" name="txtDescuentos" id="txtDescuentos" value="0">
+				<input disabled class="text-normal-data form-control text-end" type="text" name="txtDescuentos" id="txtDescuentos" value="<?php echo $isr[0]['flDescuentos']; ?>">
 			</div>
 		</div>
 		<div class="d-flex flex-wrap flex-item-25">
@@ -120,7 +120,7 @@
 				<p class="text-normal-data text-uppercase">Ingresos a Disminuir</p>
 			</div>
 			<div class="row-item-30">
-				<input disabled class="text-normal-data form-control text-end" type="text" name="txtIngresosDisminuir" id="txtIngresosDisminuir" value="0">
+				<input disabled class="text-normal-data form-control text-end" type="text" name="txtIngresosDisminuir" id="txtIngresosDisminuir" value="<?php echo $isr[0]['flIngresosDisminuir']; ?>">
 			</div>
 		</div>
 		<div class="d-flex flex-wrap flex-item-25">
@@ -128,7 +128,7 @@
 				<p class="text-normal-data text-uppercase">Ingresos a Adicionales</p>
 			</div>
 			<div class="row-item-30">
-				<input disabled class="text-normal-data form-control text-end" type="text" name="txtIngresosAdicionales" id="txtIngresosAdicionales" value="0">
+				<input disabled class="text-normal-data form-control text-end" type="text" name="txtIngresosAdicionales" id="txtIngresosAdicionales" value="<?php echo $isr[0]['flIngresosAdicionales']; ?>">
 			</div>
 		</div>
 	</section>
@@ -145,7 +145,7 @@
 				<p class="text-normal-data text-uppercase">Total de ingresos por la actividad</p>
 			</div>
 			<div class="row-item-30">
-				<input disabled class="text-normal-data form-control text-end" type="text" name="txtTotalIngresos_Determinacion" id="txtTotalIngresos_Determinacion" value="54000.00">
+				<input disabled class="text-normal-data form-control text-end" type="text" name="txtTotalIngresos_Determinacion" id="txtTotalIngresos_Determinacion" value="<?php echo $isr[0]['flTotalIngresos_Determinacion']; ?>">
 			</div>
 		</div>
 		<div class="d-flex flex-wrap flex-item-25">
@@ -153,7 +153,7 @@
 				<p class="text-normal-data text-uppercase">base gravable</p>
 			</div>
 			<div class="row-item-30">
-				<input disabled class="text-normal-data form-control text-end" type="text" name="txtBaseGravable" id="txtBaseGravable" value="54000.00">
+				<input disabled class="text-normal-data form-control text-end" type="text" name="txtBaseGravable" id="txtBaseGravable" value="<?php echo $isr[0]['flBaseGravable']; ?>">
 			</div>
 		</div>
 		<div class="d-flex flex-wrap flex-item-25">
@@ -161,7 +161,7 @@
 				<p class="text-normal-data text-uppercase">tasa aplicable</p>
 			</div>
 			<div class="row-item-30">
-				<input disabled class="text-normal-data form-control text-end" type="text" name="txtTasaAplicable" id="txtTasaAplicable" value="1.50%">
+				<input disabled class="text-normal-data form-control text-end" type="text" name="txtTasaAplicable" id="txtTasaAplicable" value="<?php echo $isr[0]['txtTasaAplicable']; ?>">
 			</div>
 		</div>
 		<div class="d-flex flex-wrap flex-item-25">
@@ -169,7 +169,7 @@
 				<p class="text-normal-data text-uppercase">impuesto mensual</p>
 			</div>
 			<div class="row-item-30">
-				<input disabled class="text-normal-data form-control text-end" type="text" name="txtImpuestoMensual" id="txtImpuestoMensual" value="810.00">
+				<input disabled class="text-normal-data form-control text-end" type="text" name="txtImpuestoMensual" id="txtImpuestoMensual" value="<?php echo $isr[0]['flImpuestoMensual']; ?>">
 			</div>
 		</div>
 		<div class="d-flex flex-wrap flex-item-25">
@@ -177,7 +177,7 @@
 				<p class="text-normal-data text-uppercase">isr retenido por personas morales</p>
 			</div>
 			<div class="row-item-30">
-				<input disabled class="text-normal-data form-control text-end" type="text" name="txtIsrRetMorales" id="txtIsrRetMorales" value="375.00">
+				<input disabled class="text-normal-data form-control text-end" type="text" name="txtIsrRetMorales" id="txtIsrRetMorales" value="<?php echo $isr[0]['flIsrRetMorales']; ?>">
 			</div>
 		</div>
 		<div class="d-flex flex-wrap flex-item-25">
@@ -185,7 +185,7 @@
 				<p class="text-normal text-uppercase">impuesto a cargo</p>
 			</div>
 			<div class="row-item-30">
-				<input disabled class="text-normal-data form-control text-end" type="text" name="txtImpuestoCargoIsr" id="txtImpuestoCargoIsr" value="375.00">
+				<input disabled class="text-normal-data form-control text-end" type="text" name="txtImpuestoCargoIsr" id="txtImpuestoCargoIsr" value="<?php echo $isr[0]['flImpuestoCargoIsr']; ?>">
 			</div>
 		</div>
 	</section>
@@ -202,7 +202,7 @@
 				<p class="text-normal-data text-uppercase">a cargo</p>
 			</div>
 			<div class="row-item-30">
-				<input disabled class="text-normal-data form-control text-end" type="text" name="txtCntAcargo" id="txtCntAcargo" value="435.00">
+				<input disabled class="text-normal-data form-control text-end" type="text" name="txtCntAcargo" id="txtCntAcargo" value="<?php echo $isr[0]['flCntAcargo']; ?>">
 			</div>
 		</div>
 		<div class="d-flex flex-wrap flex-item-25">
@@ -210,7 +210,7 @@
 				<p class="text-normal-data text-uppercase">total de contribuciones</p>
 			</div>
 			<div class="row-item-30">
-				<input disabled class="text-normal-data form-control text-end" type="text" name="txtTotalContribuciones" id="txtTotalContribuciones" value="435.00">
+				<input disabled class="text-normal-data form-control text-end" type="text" name="txtTotalContribuciones" id="txtTotalContribuciones" value="<?php echo $isr[0]['flTotalContribuciones']; ?>">
 			</div>
 		</div>
 		<div class="d-flex flex-wrap flex-item-25">
@@ -218,7 +218,7 @@
 				<p class="text-normal-data text-uppercase">subisidio para el empleo</p>
 			</div>
 			<div class="row-item-30">
-				<input disabled class="text-normal-data form-control text-end" type="text" name="txtSubsidio" id="txtSubsidio" value="125.00">
+				<input disabled class="text-normal-data form-control text-end" type="text" name="txtSubsidio" id="txtSubsidio" value="<?php echo $isr[0]['flSubsidio']; ?>">
 			</div>
 		</div>
 		<hr>
@@ -227,7 +227,7 @@
 				<p class="text-normal-data text-uppercase">Compensaciones por aplicar</p>
 			</div>
 			<div class="row-item-30">
-				<input disabled class="text-normal-data form-control" type="text" name="txtCompensacionesPago" id="txtCompensacionesPago" value="NO">
+				<input disabled class="text-normal-data form-control text-end" type="text" name="txtCompensacionesPago" id="txtCompensacionesPago" value="<?php echo $isr[0]['flCompensacionesPago']; ?>">
 			</div>
 		</div>
 		
@@ -236,7 +236,7 @@
 				<p class="text-normal-data text-uppercase">compensaciones</p>
 			</div>
 			<div class="row-item-30">
-				<input disabled class="text-normal-data form-control text-end" type="text" name="flCompensaciones" id="flCompensaciones" value="250.00">
+				<input disabled class="text-normal-data form-control text-end" type="text" name="flCompensaciones" id="flCompensaciones" value="<?php echo $isr[0]['flompensaciones']; ?>">
 			</div>
 		</div>
 
@@ -245,7 +245,7 @@
 				<p class="text-normal text-uppercase">total de aplicaciones</p>
 			</div>
 			<div class="row-item-30">
-				<input disabled class="text-normal-data form-control text-end" type="text" name="txtAplicacionesPago" id="txtAplicacionesPago" value="375.00">
+				<input disabled class="text-normal-data form-control text-end" type="text" name="txtAplicacionesPago" id="txtAplicacionesPago" value="<?php echo $isr[0]['flAplicacionesPago']; ?>">
 			</div>
 		</div>
 		<hr>
@@ -255,7 +255,7 @@
 				<p class="text-normal-data text-uppercase">total de contribuciones</p>
 			</div>
 			<div class="row-item-30">
-				<input disabled class="text-normal-data form-control text-end" type="text" name="txtTotalContribucionesPago" id="txtTotalContribucionesPago" value="435.00">
+				<input disabled class="text-normal-data form-control text-end" type="text" name="txtTotalContribucionesPago" id="txtTotalContribucionesPago" value="<?php echo $isr[0]['flTotalContribucionesPago']; ?>">
 			</div>
 		</div>
 
@@ -264,7 +264,7 @@
 				<p class="text-normal-data text-uppercase">total de aplicaciones</p>
 			</div>
 			<div class="row-item-30">
-				<input disabled class="text-normal-data form-control text-end" type="text" name="txtAplicaciones" id="txtAplicaciones" value="375.00">
+				<input disabled class="text-normal-data form-control text-end" type="text" name="txtAplicaciones" id="txtAplicaciones" value="<?php echo $isr[0]['flAplicaciones']; ?>">
 			</div>
 		</div>
 		
@@ -273,7 +273,7 @@
 				<p class="text-normal-data text-uppercase">cantidad a cargo</p>
 			</div>
 			<div class="row-item-30">
-				<input disabled class="text-normal-data form-control text-end" type="text" name="txtCantidadCargo" id="txtCantidadCargo" value="60.00">
+				<input disabled class="text-normal-data form-control text-end" type="text" name="txtCantidadCargo" id="txtCantidadCargo" value="<?php echo $isr[0]['flCantidadCargo']; ?>">
 			</div>
 		</div>
 
@@ -282,7 +282,7 @@
 				<p class="text-normal text-uppercase">cantidad a pagar</p>
 			</div>
 			<div class="row-item-30">
-				<input disabled class="text-normal-data form-control text-end" type="text" name="txtCantidadPago" id="txtCantidadPago" value="60.00">
+				<input disabled class="text-normal-data form-control text-end" type="text" name="txtCantidadPago" id="txtCantidadPago" value="<?php echo $isr[0]['flCantidadPago']; ?>">
 			</div>
 		</div>
 

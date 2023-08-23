@@ -1,7 +1,7 @@
  <?php 
 $fechaActual = date('Y-m-d');
 $nuevaFecha = date('d-m-Y', strtotime($fechaActual . ' -1 day'));
-if (!$totIngresos) {
+/*if (!$totIngresos) {
 ?>
 <script type="text/javascript">
 	const totIngresos = prompt("Total de ingresos:");
@@ -13,7 +13,7 @@ if (!$totIngresos) {
 	</script>
 <?php 
 }
- ?>
+ */?>
  <style type="text/css">
  	.text-span{
  		background-color: #951752;
@@ -68,7 +68,7 @@ if (!$totIngresos) {
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs">
 			  <li class="nav-item">
-			    <a class="nav-link active text-body" data-bs-toggle="tab" href="#deterIVA2">Determinacion </a>
+			    <a class="nav-link active text-body" data-bs-toggle="tab" href="#deterIVA2">Determinación </a>
 			  </li>
 			  <li class="nav-item">
 			    <a class="nav-link text-body" data-bs-toggle="tab" href="#pagoIVA2" onclick="llenarDatos();">Pago</a>
@@ -91,7 +91,7 @@ if (!$totIngresos) {
 				  		</div>
 				  		<div class="col-lg-1"></div>
 				  		<div class="col-lg-3">
-				  			<input type="number"   name="txtActGravadas16" id="txtActGravadas16" class="form-control text-end no-spin"  disabled>
+				  			<input type="number"   name="txtActGravadas16" id="txtActGravadas16" class="form-control text-end no-spin"  onkeyup="calculoIva(this.value);" onblur="calculoIva(this.value);" onkeypress="calculoIva(this.value);" onchange="calculoIva(this.value);" value="0">
 				  		</div>
 				  		<div class="col-lg-3">
 				  			<button type="button" class="btn btn-outline-secondary btn-sm" onclick="modGrav16();" id="btnActGravadas16">VER DETALLE</button>
@@ -182,7 +182,7 @@ if (!$totIngresos) {
 				  		</div>
 				  		<div class="col-lg-1 text-end"><strong>(-)</strong></div>
 				  		<div class="col-lg-3">
-				  			<input type="number"   name="txtIVARetenido" id="txtIVARetenido" class="form-control text-end no-spin"  onkeyup="impCargo();" onblur="impCargo();" onkeypress="impCargo();" onchange="impCargo();">
+				  			<input type="number"   name="txtIVARetenido" id="txtIVARetenido" class="form-control text-end no-spin"  onkeyup="impCargo1(this.value);" onblur="impCargo1(this.value);" onkeypress="impCargo1(this.value);" onchange="impCargo1(this.value);">
 				  		</div>
 				  		<div class="col-lg-3">
 				  			<button type="button" class="btn btn-outline-secondary btn-sm" disabled>VER DETALLE</button>
@@ -236,7 +236,7 @@ if (!$totIngresos) {
 				  			</div>
 				  			<div class="col-lg-1 text-end"><strong>(-)</strong></div>
 				  			<div class="col-lg-3">
-				  				<input type="number"   name="txtAcreditamiento" id="txtAcreditamiento" class="form-control text-end no-spin" onkeyup="impFavor();" onblur="impFavor();" onkeypress="impFavor();" onchange="impFavor();">
+				  				<input type="number"   name="txtAcreditamiento" id="txtAcreditamiento" class="form-control text-end no-spin" onkeyup="impFavor(this.value);" onblur="impFavor(this.value);" onkeypress="impFavor(this.value);" onchange="impFavor(this.value);" value = '0'>
 				  			</div>
 				  			<div class="col-lg-3">
 				  				
@@ -791,7 +791,7 @@ if (!$totIngresos) {
 
 
 <script type="text/javascript">
-	document.getElementById('txtActGravadas16').value = totIngresos;
+	//document.getElementById('txtActGravadas16').value = totIngresos;
 
 	let actGravadas =  document.getElementById('txtActGravadas16');
 	let actGravadas_1= document.getElementById('txtActGravadas_1');
@@ -817,6 +817,12 @@ if (!$totIngresos) {
 	iVANoCobrado.value = 0;
 	iVARetenido.value = 0;
 	iVAPeriodoDesc.value = 0;
+
+	function calculoIva(monto){
+		let ivaCargo16 = (monto * 0.16).toFixed(2);
+	  	iVA16.value = ivaCargo16;
+	  	iVACargo.value = ivaCargo16;
+	}
 
 	function modGrav16(){
 		var myModal = new bootstrap.Modal(document.getElementById('modGrav16'));
@@ -878,9 +884,7 @@ if (!$totIngresos) {
 	  document.getElementById('divEstimulos').style.display = 'none';
 
 	  
-	  let ivaCargo16 = (totIngresos * 0.16).toFixed(2);
-	  iVA16.value = ivaCargo16;
-	  iVACargo.value = ivaCargo16;
+	  
 
 
 	  		
@@ -940,9 +944,9 @@ if (!$totIngresos) {
 		if(monto == ''){
 			monto = 0;
 		}
-		let tot = (parseFloat(totIngresos) + parseFloat(monto) + parseFloat(noimp) + parseFloat(exenta)) * .16;
+		let tot = (parseFloat(actGravadas.value) + parseFloat(monto) + parseFloat(noimp) + parseFloat(exenta)) * .16;
 		console.log(tot);
-		iVACargo.value = tot;
+		iVACargo.value = tot.toFixed(2);
 	}
 
 	function exentas(monto){
@@ -956,8 +960,8 @@ if (!$totIngresos) {
 		if(monto == ''){
 			monto = 0;
 		}
-		let tot = (parseFloat(totIngresos) + parseFloat(monto) + parseFloat(noimp) + parseFloat(act0)) * .16;
-		iVACargo.value = tot;
+		let tot = (parseFloat(actGravadas.value) + parseFloat(monto) + parseFloat(noimp) + parseFloat(act0)) * .16;
+		iVACargo.value = tot.toFixed(2);
 	}
 
 	function noObj(monto){
@@ -976,8 +980,8 @@ if (!$totIngresos) {
 			if(monto == ''){
 			monto = 0;
 			}
-			let tot = (parseFloat(totIngresos) + parseFloat(monto) + parseFloat(act0) + parseFloat(exenta)) * .16;
-			iVACargo.value = tot;
+			let tot = (parseFloat(actGravadas.value) + parseFloat(monto) + parseFloat(act0) + parseFloat(exenta)) * .16;
+			iVACargo.value = tot.toFixed(2);
 	}
 
 
@@ -998,11 +1002,39 @@ if (!$totIngresos) {
 	let cantMenor = document.getElementById('cantMenor');
 	let cantMayor = document.getElementById('cantMayor');
 
+
+	/*utilizar esta función para completar el funcionamiento*/
+	function impCargo1(monto){
+		let iR = iVARetenido.value;
+		let iP = iVAPeriodo.value;
+		let iD = iVAPeriodoDesc.value;
+
+		if(iR == ''){
+			iR = 0;
+		}else{
+			iR = parseFloat(iR);
+		}
+		if(iP == ''){
+			iP = 0;
+		}else{
+			iP = parseFloat(iP);
+		}
+		if(iD == ''){
+			iD = 0;
+		}else{
+			iD = parseFloat(iD);
+		}
+		if(monto == ''){
+		monto = 0;
+		}
+		let tot = (parseFloat(iVACargo.value) - parseFloat(monto) - parseFloat(act0) - parseFloat(exenta) + parseFloat(iD)) * .16;
+		cantidadCargo.value = tot.toFixed(2);
+		
+		
+		
+	}
+
 	function impCargo(){
-
-		
-
-		
 
 		let sum = 0;
 		sum += parseFloat(iVANoCobrado.value);
@@ -1040,10 +1072,7 @@ if (!$totIngresos) {
 		}
 	}
 
-	function impFavor(){
-		console.log("Monto: " + acreditamiento.value);
-		console.log("Valor a restar: " + cantidadCargoF.value);
-		let monto = parseFloat(acreditamiento.value);
+	function impFavor(monto){
 		let restar = parseFloat(iVAPeriodo.value) - parseFloat(iVACargo.value);
 		let res = restar - monto;
 		cantidadCargoT.value = res.toFixed(2);

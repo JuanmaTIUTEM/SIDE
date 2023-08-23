@@ -105,7 +105,7 @@ class MSimulador extends CI_Model
 
 	function getTotalIng(){
 		$idDeclaracion = $_GET['eIdDeclaracion'];
-		$query ="SELECT txtTotIngresos FROM isr_1 where fk_eIdDeclaracion = $idDeclaracion";
+		$query ="SELECT flTotalIngresosIsr FROM isr_1 where fk_eIdDeclaracion = $idDeclaracion";
 		$result = $this->db->query($query);
 		if($result){
 			$res = $result->result_array();

@@ -71,23 +71,28 @@
 					<h4>Obligaciones a declarar <hr></h4>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-lg-1"></div>
-				<div class="col-lg-2 text-center">
-					<button type="button" class="btn btn-white" onclick="changeStatus(txtISR_1);"><i class="material-icons disable" style="font-size:5vw;" id="txtISR_1" name="txtISR_1">check_circle</i></button><p><strong>ISR simplificado de confianza. Personas físicas</strong></p>
+			<div class="d-flex justify-content-around mb-5">
+				<div class="p-2 text-center">
+					<button type="button" class="btn btn-white" onclick="changeStatus(txtISR_1);"><i class="material-icons disable" style="font-size:5vw;" id="txtISR_1" name="txtISR_1">check_circle</i></button><p><strong>ISR simplificado de confianza. Personas físicas.</strong></p>
 				</div>
-				<div class="col-lg-2 text-center">
-					<button type="button" class="btn btn-white" onclick="changeStatus(txtISR_2);"><i class="material-icons disable" style="font-size:5vw;" id="txtISR_2" name="txtISR_2">check_circle</i><p><strong>ISR Retenciones por salarios</strong></p>
-				</div>
-				<div class="col-lg-2 text-center">
-					<button type="button" class="btn btn-white" onclick="changeStatus(txtISR_3);"><i class="material-icons disable" style="font-size:5vw;" id="txtISR_3" name="txtISR_3">check_circle</i></button><p><strong>ISR Retenciones por asimilados a salarios</strong></p>	
-				</div>
-				<div class="col-lg-2 text-center">
-					<button type="button" class="btn btn-white" onclick="changeStatus(txtIVA_1);"><i class="material-icons disable" style="font-size:5vw;" id="txtIVA_1" name="txtIVA_1">check_circle</i></button><p><strong>IVA retenciones</strong></p>
-				</div>
-				<div class="col-lg-2 text-center">
+				<div class="p-2 text-center">
 					<button type="button" class="btn btn-white" onclick="changeStatus(txtIVA_2);"><i class="material-icons disable" style="font-size:5vw; " id="txtIVA_2" name="txtIVA_2">check_circle</i></button><p><strong>IVA simplificado de confianza.</strong></p>
 				</div>
+				
+			</div>
+			<br>
+			<!-- Botones desactivados-->
+			<div class="row" id="btnDesact">
+				<div class="col-lg-2 text-center" id="divISR_2">
+					<button type="button" class="btn btn-white" onclick="changeStatus(txtISR_2);"><i class="material-icons disable" style="font-size:5vw;" id="txtISR_2" name="txtISR_2">check_circle</i><p><strong>ISR Retenciones por salarios</strong></p>
+				</div>
+				<div class="col-lg-2 text-center" id="divISR_3">
+					<button type="button" class="btn btn-white" onclick="changeStatus(txtISR_3);"><i class="material-icons disable" style="font-size:5vw;" id="txtISR_3" name="txtISR_3">check_circle</i></button><p><strong>ISR Retenciones por asimilados a salarios</strong></p>	
+				</div>
+				<div class="col-lg-2 text-center" id="divIVA_1">
+					<button type="button" class="btn btn-white" onclick="changeStatus(txtIVA_1);"><i class="material-icons disable" style="font-size:5vw;" id="txtIVA_1" name="txtIVA_1">check_circle</i></button><p><strong>IVA retenciones</strong></p>
+				</div>
+				
 			</div>
 	<!--</form>-->
 			<div class="row">
@@ -107,6 +112,10 @@
 	  const dperiodo = document.getElementById("divElement4");
 	  const dperiodo2 = document.getElementById("divElement5");
 	  changeSelect(0);	
+	  window.onload = function() {
+	  	document.getElementById('btnDesact').style.display = 'none';
+	  }
+	  
 
 
 	  imgInicio.style.display = 'none';
