@@ -1,0 +1,84 @@
+create table isr_1 (
+	eIdIsr_1 int primary key auto_increment,
+	fk_eIdDeclaracion int not null,
+	flTotalIngresosIsr decimal(12,2) default 0,
+	txtCopropiedad   varchar(10),
+	flEfectivos  decimal(12,2),
+	flDescuentos  decimal(12,2),
+	flIngresosDisminuir  decimal(12,2),
+	flIngresosAdicionales  decimal(12,2),
+	flTotalIngresos_Determinacion  decimal(12,2),
+	flBaseGravable  decimal(12,2),
+	txtTasaAplicable  varchar(10),
+	flImpuestoMensual  decimal(12,2),
+	flIsrRetMorales  decimal(12,2),
+	flImpuestoCargoIsr  decimal(12,2),
+	flCntAcargo  decimal(12,2),
+	flTotalContribuciones  decimal(12,2),
+	flSubsidio  decimal(12,2),
+	flCompensacionesPago  decimal(12,2),
+	flompensaciones  decimal(12,2),
+	flAplicacionesPago  decimal(12,2),
+	flTotalContribucionesPago  decimal(12,2),
+	flAplicaciones  decimal(12,2),
+	flCantidadCargo  decimal(12,2),
+	flCantidadPago  decimal(12,2),
+	dtCreatedAt DATETIME,
+	dtUpdatedAt DATETIME,
+	bIsr1Active bit'1'
+);
+
+
+create table iva_1(
+	eIdIva_1 int primary key auto_increment,
+	fk_eIdDeclaracion int not null,
+	flActGravadas16 decimal (12,2),
+	flActGravadas_1 decimal (12,2),
+	flActExentas decimal (12,2),
+	flNoObjeto decimal (12,2),
+	flIVA16 decimal (12,2),
+	flIVACargo decimal (12,2),
+	flIVANoCobrado decimal (12,2),
+	flIVARetenido decimal (12,2),
+	flIVAPeriodo decimal (12,2),
+	flIVAPeriodoDesc decimal (12,2),
+	flCantidadCargo decimal (12,2),
+	flAcreditamiento decimal (12,2),
+	flCantidadCargoT decimal (12,2),
+	flCantidadCargo_F decimal (12,2),
+	flCantidadCargoF decimal (12,2),
+	flAcargo2 decimal (12,2),
+	flTotCont2 decimal (12,2),
+	txtComAplicar varchar(5),
+	flcompensaciones decimal (12,2),
+	txtEstimulos2 varchar(5),
+	flestimulos decimal (12,2),
+	flTotAplic2 decimal (12,2),
+	flTotContrib2 decimal (12,2),
+	flTotAplic2_1 decimal (12,2),
+	flCntAcargo decimal (12,2),
+	flAPagar2 decimal (12,2),
+	dtCreatedAt date,
+	dtUpdatedAt date,
+	bActiveIva1 bit'1'
+);
+
+
+delimiter $
+create procedure insisr1 (IN in_fk_eIdDeclaracion int,in_txtCopropiedad varchar(10),in_flEfectivos decimal(12,2),in_flDescuentos  decimal(12,2),in_flIngresosDisminuir decimal(12,2),in_flIngresosAdicionales decimal(12,2),in_flTotalIngresos_Determinacion  decimal(12,2),in_flBaseGravable decimal(12,2),in_txtTasaAplicable varchar(10),in_flImpuestoMensual decimal(12,2),in_flIsrRetMorales decimal(12,2),in_flImpuestoCargoIsr decimal(12,2),in_flCntAcargo decimal(12,2),in_flTotalContribuciones decimal(12,2),in_flSubsidio decimal(12,2),in_flCompensacionesPago decimal(12,2),in_flompensaciones decimal(12,2),in_flAplicacionesPago decimal(12,2),in_flTotalContribucionesPago  decimal(12,2),in_flAplicaciones decimal(12,2),in_flCantidadCargo decimal(12,2),in_flCantidadPago decimal(12,2))
+
+BEGIN
+
+	INSERT INTO isr_1 (fk_eIdDeclaracion,txtCopropiedad,flEfectivos,flDescuentos 	flIngresosDisminuir,flIngresosAdicionales,flTotalIngresos_Determinacion,flBaseGravable,txtTasaAplicable,flImpuestoMensual,flIsrRetMorales,flImpuestoCargoIsr,flCntAcargo,flTotalContribuciones,flSubsidio,flCompensacionesPago,flompensaciones,flAplicacionesPago,flTotalContribucionesPago,flAplicaciones,flCantidadCargo,flCantidadPago)
+	VALUES
+	(in_fk_eIdDeclaracion,in_txtCopropiedad,in_flEfectivos,in_flDescuentos ,in_flIngresosDisminuir,in_flIngresosAdicionales,in_flTotalIngresos_Determinacion,in_flBaseGravable,in_txtTasaAplicable,in_flImpuestoMensual,in_flIsrRetMorales,in_flImpuestoCargoIsr,in_flCntAcargo,in_flTotalContribuciones,in_flSubsidio,in_flCompensacionesPago,in_flompensaciones,in_flAplicacionesPago,in_flTotalContribucionesPago,in_flAplicaciones,in_flCantidadCargo,in_flCantidadPago);
+
+END$
+
+delimiter $
+create procedure insiva1 (IN in_fk_eIdDeclaracion int,in_flActGravadas16 decimal (12,2),in_flActGravadas_1 decimal (12,2),in_flActExentas decimal (12,2),in_flNoObjeto decimal (12,2),in_flIVA16 decimal (12,2),in_flIVACargo decimal (12,2),in_flIVANoCobrado decimal (12,2),in_flIVARetenido decimal (12,2),in_flIVAPeriodo decimal (12,2),in_flIVAPeriodoDesc decimal (12,2),in_flCantidadCargo decimal (12,2),in_flAcreditamiento decimal (12,2),in_flCantidadCargoT decimal (12,2),in_flCantidadCargo_F decimal (12,2),in_flCantidadCargoF decimal (12,2),in_flAcargo2 decimal (12,2),in_flTotCont2 decimal (12,2),in_txtComAplicar varchar(5),in_flcompensaciones decimal (12,2),in_txtEstimulos2 varchar(5),in_flestimulos decimal (12,2),in_flTotAplic2 decimal (12,2),in_flTotContrib2 decimal (12,2),in_flTotAplic2_1 decimal (12,2),in_flCntAcargo decimal (12,2),in_flAPagar2 decimal (12,2))
+BEGIN
+	INSERT INTO iva_1(fk_eIdDeclaracion,flActGravadas16,flActGravadas_1,flActExentas,flNoObjeto,flIVA16,flIVACargo,flIVANoCobrado,flIVARetenido,flIVAPeriodo,flIVAPeriodoDesc,flCantidadCargo,flAcreditamiento,flCantidadCargoT,flCantidadCargo_F,flCantidadCargoF,flAcargo2,flTotCont2,txtComAplicar,flcompensaciones,txtEstimulos2,flestimulos,flTotAplic2,flTotContrib2,flTotAplic2_1,flCntAcargo,flAPagar2)
+	values(in_fk_eIdDeclaracion,in_flActGravadas16,in_flActGravadas_1,in_flActExentas,in_flNoObjeto,in_flIVA16,in_flIVACargo,in_flIVANoCobrado,in_flIVARetenido,in_flIVAPeriodo,in_flIVAPeriodoDesc,in_flCantidadCargo,in_flAcreditamiento,in_flCantidadCargoT,in_flCantidadCargo_F,in_flCantidadCargoF,in_flAcargo2,in_flTotCont2,in_txtComAplicar,in_flcompensaciones,in_txtEstimulos2,in_flestimulos,in_flTotAplic2,in_flTotContrib2,in_flTotAplic2_1,in_flCntAcargo,in_flAPagar2);
+END$
+
