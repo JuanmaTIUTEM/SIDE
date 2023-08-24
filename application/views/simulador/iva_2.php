@@ -59,7 +59,7 @@ $nuevaFecha = date('d-m-Y', strtotime($fechaActual . ' -1 day'));
 			<button type="button" class="bg-red btn text-white w-100 h-100">ADMINISTRACIÓN DE LA DECLARACIÓN</button>
 		</div>
 		<div class="col-lg-2">
-			<button type="button" class="bg-red btn text-white w-100 h-100">GUARDAR</button>
+			<button type="button" class="bg-red btn text-white w-100 h-100" onclick="sendData();">GUARDAR</button>
 		</div>
 	</div>
 	<div class="row bg-light rounded text-body p-3">
@@ -68,17 +68,17 @@ $nuevaFecha = date('d-m-Y', strtotime($fechaActual . ' -1 day'));
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs">
 			  <li class="nav-item">
-			    <a class="nav-link active text-body" data-bs-toggle="tab" href="#deterIVA2">Determinación </a>
+			    <a class="nav-link active text-body" data-bs-toggle="tab" href="#deterIVA2" onclick="deterIVA();">Determinación </a>
 			  </li>
 			  <li class="nav-item">
-			    <a class="nav-link text-body" data-bs-toggle="tab" href="#pagoIVA2" onclick="llenarDatos();">Pago</a>
+			    <a class="nav-link text-body" data-bs-toggle="tab" href="#pagoIVA2" onclick="pagoIVA();">Pago</a>
 			  </li>
 			</ul>
 
 			<!-- Tab panes -->
+		<form action = "<?php echo site_url('iva2'); ?>" method = "POST" id = "frmIVA2">
 			<div class="tab-content bg-white">
 			  <div class="tab-pane container active" id="deterIVA2">
-			  	<form id="frmDetIVA2">
 				  	<div class="row">
 				  		<div class="col-lg-6 p-2">
 				  			<p class="msg-muted">Los campos marcados con asterisco (*) son obligatorios</p>
@@ -169,7 +169,7 @@ $nuevaFecha = date('d-m-Y', strtotime($fechaActual . ' -1 day'));
 				  		</div>
 				  		<div class="col-lg-1 text-end"><strong>(-)</strong></div>
 				  		<div class="col-lg-3">
-				  			<input type="number"   name="txtIVANoCobrado" id="txtIVANoCobrado" class="form-control text-end no-spin" onkeyup="impCargo();" onblur="impCargo();" onkeypress="impCargo();" onchange="impCargo();">
+				  			<input type="number"   name="txtIVANoCobrado" id="txtIVANoCobrado" class="form-control text-end no-spin"  onkeyup="impCargo1(this.value);" onblur="impCargo1(this.value);" onkeypress="impCargo1(this.value);" onchange="impCargo1(this.value);">
 				  		</div>
 				  		<div class="col-lg-3">
 				  			<button type="button" class="btn btn-outline-secondary btn-sm" disabled>VER DETALLE</button>
@@ -182,7 +182,7 @@ $nuevaFecha = date('d-m-Y', strtotime($fechaActual . ' -1 day'));
 				  		</div>
 				  		<div class="col-lg-1 text-end"><strong>(-)</strong></div>
 				  		<div class="col-lg-3">
-				  			<input type="number"   name="txtIVARetenido" id="txtIVARetenido" class="form-control text-end no-spin"  onkeyup="impCargo1(this.value);" onblur="impCargo1(this.value);" onkeypress="impCargo1(this.value);" onchange="impCargo1(this.value);">
+				  			<input type="number"   name="txtIVARetenido" id="txtIVARetenido" class="form-control text-end no-spin"  onkeyup="ivaRet(this.value);" onblur="ivaRet(this.value);" onkeypress="ivaRet(this.value);" onchange="ivaRet(this.value);">
 				  		</div>
 				  		<div class="col-lg-3">
 				  			<button type="button" class="btn btn-outline-secondary btn-sm" disabled>VER DETALLE</button>
@@ -195,7 +195,7 @@ $nuevaFecha = date('d-m-Y', strtotime($fechaActual . ' -1 day'));
 				  		</div>
 				  		<div class="col-lg-1 text-end"><strong>(-)</strong></div>
 				  		<div class="col-lg-3">
-				  			<input type="number"   name="txtIVAPeriodo" id="txtIVAPeriodo" class="form-control text-end no-spin" required onkeyup="impCargo();" onblur="impCargo();" onkeypress="impCargo();" onchange="impCargo();">
+				  			<input type="number"   name="txtIVAPeriodo" id="txtIVAPeriodo" class="form-control text-end no-spin" required onkeyup="ivaAC(this.value);" onblur="ivaAC(this.value);" onkeypress="ivaAC(this.value);" onchange="ivaAC(this.value);">
 				  		</div>
 				  		<div class="col-lg-3">
 				  			<button class="btn btn-outline-secondary btn-sm" type="button" onclick="ivaAcred();" >CAPTURAR</button>
@@ -208,7 +208,7 @@ $nuevaFecha = date('d-m-Y', strtotime($fechaActual . ' -1 day'));
 				  		</div>
 				  		<div class="col-lg-1 text-end"><strong>(+)</strong></div>
 				  		<div class="col-lg-3">
-				  			<input type="number"    name="txtIVAPeriodoDesc" id="txtIVAPeriodoDesc" class="form-control text-end no-spin" onkeyup="impCargo();" onblur="impCargo();" onkeypress="impCargo();" onchange="impCargo();">
+				  			<input type="number"    name="txtIVAPeriodoDesc" id="txtIVAPeriodoDesc" class="form-control text-end no-spin" onkeyup="ivaDev(this.value);" onblur="ivaDev(this.value);" onkeypress="ivaDev(this.value);" onchange="ivaDev(this.value);">
 				  		</div>
 				  		<div class="col-lg-3">
 				  			<button type="button" class="btn btn-outline-secondary btn-sm" disabled>VER DETALLE</button>
@@ -257,38 +257,36 @@ $nuevaFecha = date('d-m-Y', strtotime($fechaActual . ' -1 day'));
 				  		</div>
 				  	</div>
 				  	
-						<div id="cantMenor">
-							<div class="row p-2">
-								<div class="col-lg-4 ">
-									<strong class="questions">Cantidad a cargo</strong>
-								</div>
-								<div class="col-lg-1 text-end"><strong>(=)</strong></div>
-								<div class="col-lg-3">
-									<input type="number"    name="txtCantidadCargo_F" id="txtCantidadCargo_F" class="form-control text-end no-spin" disabled>
-								</div>
-								<div class="col-lg-3">
-									
-								</div>
+					<div id="cantMenor">
+						<div class="row p-2">
+							<div class="col-lg-4 ">
+								<strong class="questions">Cantidad a cargo</strong>
 							</div>
-							<div class="row p-2">
-								<div class="col-lg-4 ">
-									<strong class="questions">Impuesto a favor</strong>
-								</div>
-								<div class="col-lg-1 text-end"><strong>(=)</strong></div>
-								<div class="col-lg-3">
-									<input type="number"   name="txtCantidadCargoF" id="txtCantidadCargoF" class="form-control text-end no-spin" disabled>
-								</div>
-								<div class="col-lg-3">
-									
-								</div>
+							<div class="col-lg-1 text-end"><strong>(=)</strong></div>
+							<div class="col-lg-3">
+								<input type="number"    name="txtCantidadCargo_F" id="txtCantidadCargo_F" class="form-control text-end no-spin" disabled>
+							</div>
+							<div class="col-lg-3">
+								
 							</div>
 						</div>
+						<div class="row p-2">
+							<div class="col-lg-4 ">
+								<strong class="questions">Impuesto a favor</strong>
+							</div>
+							<div class="col-lg-1 text-end"><strong>(=)</strong></div>
+							<div class="col-lg-3">
+								<input type="number"   name="txtCantidadCargoF" id="txtCantidadCargoF" class="form-control text-end no-spin" disabled>
+							</div>
+							<div class="col-lg-3">
+								
+							</div>
+						</div>
+					</div>
 				  	
-			  	</form>
 			  </div>
 
 			  <div class="tab-pane container fade" id="pagoIVA2">
-			  	<form id="frmPagoIVA2">
 				  	<div class="row">
 				  		<div class="col-lg-6 p-2">
 				  			<p class="msg-muted">Los campos marcados con asterisco (*) son obligatorios</p>
@@ -328,9 +326,8 @@ $nuevaFecha = date('d-m-Y', strtotime($fechaActual . ' -1 day'));
 				  		<div class="col-lg-3">
 				  			
 				  			<select name="txtComAplicar" id="txtComAplicar" class="form-select" onchange="actCompensaciones(this.value);">
-				  				<option value="0">Selecciona opción</option>
-				  				<option value="1" >Si</option>
-				  				<option value="0" >No</option>
+				  				<option value="No">No</option>
+				  				<option value="Si" >Si</option>
 				  			</select>
 				  		</div>
 				  		<div class="col-lg-3">	
@@ -357,9 +354,8 @@ $nuevaFecha = date('d-m-Y', strtotime($fechaActual . ' -1 day'));
 				  		<div class="col-lg-1 text-end"></div>
 				  		<div class="col-lg-3">
 				  			<select name="txtEstimulos2" id="txtEstimulos2" class="form-select" onchange="actEstimulos(this.value);">
-			  					<option value="0">Selecciona opción</option>
-			  					<option value="1">Si</option>
-			  					<option value="0">No</option>
+			  					<option value="No">No</option>
+			  					<option value="Si">Si</option>
 			  				</select>
 				  		</div>
 				  		<div class="col-lg-3">
@@ -439,10 +435,10 @@ $nuevaFecha = date('d-m-Y', strtotime($fechaActual . ' -1 day'));
 				  		<div class="col-lg-3">	
 				  		</div>
 				  	</div>
-			  	</form>
 			  </div>
 
 			</div>
+		</form>
 		</div>
 		<div class="col-lg-1 "></div>
 	</div>
@@ -810,13 +806,66 @@ $nuevaFecha = date('d-m-Y', strtotime($fechaActual . ' -1 day'));
 	let iVACargo = document.getElementById('txtIVACargo');
 
 	let btnActGravadas16 = document.getElementById('btnActGravadas16');
+	function sendData(){
+		let obj = {};
+		obj.eIdDeclaracion = <?php echo $_GET['eIdDeclaracion']; ?>;
+		if(iVAPeriodo.value != '' && actGravadas.value != 0 ){
+			obj.actGravadas = actGravadas.value;
+			obj.actGravadas_1 = actGravadas_1.value;
+			obj.actExentas = actExentas.value;
+			obj.noObjeto = noObjeto.value;
+			obj.iVANoCobrado = iVANoCobrado.value;
+			obj.iVARetenido = iVARetenido.value;
+			obj.iVAPeriodo = iVAPeriodo.value;
+			obj.iVAPeriodoDesc = iVAPeriodoDesc.value;
+			obj.acreditamiento = acreditamiento.value;
+			obj.cantidadCargoF = cantidadCargoF.value;
+			if(cantidadCargoT.value == ''){
+				cantidadCargoT.value = 0;
+			}
+			if(cantidadCargo.value == ''){
+				cantidadCargo.value = 0;
+			}
 
-	txtActGravadas_1.value = 0;
-	actExentas.value = 0;
-	noObjeto.value = 0;
-	iVANoCobrado.value = 0;
-	iVARetenido.value = 0;
-	iVAPeriodoDesc.value = 0;
+			obj.cantidadCargoT = cantidadCargoT.value;
+			obj.cantidadCargo = cantidadCargo.value;
+			obj.cantidadCargo_F = cantidadCargo_F.value;
+			obj.iVA16 = iVA16.value;
+			obj.iVACargo = iVACargo.value;
+			obj.txtAcargo2 = document.getElementById('txtAcargo2').value;
+			obj.txtTotCont2 = document.getElementById('txtTotCont2').value;
+			obj.txtComAplicar = document.getElementById('txtComAplicar').value;
+			obj.txtcompensaciones = document.getElementById('txtcompensaciones').value;
+			obj.txtEstimulos2 = document.getElementById('txtEstimulos2').value;
+			obj.txtestimulos = document.getElementById('txtestimulos').value;
+			obj.txtTotAplic2 = document.getElementById('txtTotAplic2').value;
+			obj.txtTotContrib2 = document.getElementById('txtTotContrib2').value;
+			obj.txtTotAplic2_1 = document.getElementById('txtTotAplic2_1').value;
+			obj.txtCntAcargo = document.getElementById('txtCntAcargo').value;
+			obj.txtAPagar2 = document.getElementById('txtAPagar2').value;
+
+		  	axios.post("<?php echo site_url('iva2'); ?>" ,obj).then(
+				function(res){
+		        if (res.status == 200) {
+		        	console.log(res.data);
+	          }
+	    	}).catch(function(err){
+	        alert(err);
+	        console.log(err);
+	    	});
+		}else{
+			alert("Favor de Completar datos faltantes");
+			if(actGravadas.value == 0){
+				actGravadas.focus();
+			}else if(iVAPeriodo.value == ''){
+				iVAPeriodo.focus();
+			}
+
+		}
+
+		
+
+	}
 
 	function calculoIva(monto){
 		let ivaCargo16 = (monto * 0.16).toFixed(2);
@@ -874,26 +923,31 @@ $nuevaFecha = date('d-m-Y', strtotime($fechaActual . ' -1 day'));
 
 	// Esperar a que la página se cargue completamente
 	document.addEventListener('DOMContentLoaded', function() {
+		txtActGravadas_1.value = 0;
+		actExentas.value = 0;
+		noObjeto.value = 0;
+		iVANoCobrado.value = 0;
+		iVARetenido.value = 0;
+		iVAPeriodoDesc.value = 0;
+
 	  // Obtener el modal por su ID
 	  var myModal = new bootstrap.Modal(document.getElementById('message1'));
 	  // Mostrar el modal
 	  myModal.show();
 
-
 	  document.getElementById('divCompensaciones').style.display = 'none';
 	  document.getElementById('divEstimulos').style.display = 'none';
 
-	  
-	  
 
-
-	  		
 	});
 	function actCompensaciones(op){
 		if(op==1){
 			document.getElementById('divCompensaciones').style.display = 'block';
 		}else{
 			document.getElementById('divCompensaciones').style.display = 'none';
+			document.getElementById('divCompensaciones').value = 0;
+			sumarCompen(0);
+
 		}
 	}
 
@@ -902,32 +956,11 @@ $nuevaFecha = date('d-m-Y', strtotime($fechaActual . ' -1 day'));
 			document.getElementById('divEstimulos').style.display = 'block';
 		}else{
 			document.getElementById('divEstimulos').style.display = 'none';
+			document.getElementById('divEstimulos').value = 0;
+			sumarEstimulos(0);
 		}
 	}
 
-	function llenarDatos(){
-		if(cantMayor.style.display = 'inline'){
-			document.getElementById('txtAcargo2').value = cantidadCargoT.value;
-			document.getElementById('txtTotCont2').value = cantidadCargoT.value;
-			document.getElementById('txtTotContrib2').value = cantidadCargoT.value;
-			document.getElementById('txtTotAplic2').value = cantidadCargoT.value;
-			document.getElementById('txtCntAcargo').value = cantidadCargoT.value;
-			document.getElementById('txtAPagar2').value = cantidadCargoT.value;
-			document.getElementById('txtTotAplic2_1').value = 0;
-		} 
-		if(cantMenor.style.display = 'inline'){
-			document.getElementById('txtAcargo2').value = 0;
-			document.getElementById('txtTotCont2').value = 0;
-			document.getElementById('txtTotContrib2').value = 0;
-			document.getElementById('txtTotAplic2').value = 0;
-			document.getElementById('txtCntAcargo').value = 0;
-			document.getElementById('txtAPagar2').value = 0;
-			document.getElementById('txtTotAplic2_1').value = cantidadCargoT.value;
-		} 
-			
-
-	}
-	
 	function iva0(monto){
 		let noimp = document.getElementById('txtNoObjeto').value;
 		let exenta = document.getElementById('txtActExentas').value;
@@ -985,25 +1018,11 @@ $nuevaFecha = date('d-m-Y', strtotime($fechaActual . ' -1 day'));
 	}
 
 
-	function saveData(){
-		let obj ={};
-		obj.actGravadas = actGravadas.value;
-		obj.actGravadas_1 = actGravadas_1.value;
-		obj.actExentas = actExentas.value;
-		obj.noObjeto = noObjeto.value;
-		obj.iVANoCobrado = iVANoCobrado.value;
-		obj.iVARetenido = iVARetenido.value;
-		obj.iVAPeriodo = iVAPeriodo.value;
-		obj.iVAPeriodoDesc = iVAPeriodoDesc.value;
-		obj.acreditamiento = acreditamiento.value;
-		console.log(obj); 
-	}
+	
 
 	let cantMenor = document.getElementById('cantMenor');
 	let cantMayor = document.getElementById('cantMayor');
 
-
-	/*utilizar esta función para completar el funcionamiento*/
 	function impCargo1(monto){
 		let iR = iVARetenido.value;
 		let iP = iVAPeriodo.value;
@@ -1027,54 +1046,215 @@ $nuevaFecha = date('d-m-Y', strtotime($fechaActual . ' -1 day'));
 		if(monto == ''){
 		monto = 0;
 		}
-		let tot = (parseFloat(iVACargo.value) - parseFloat(monto) - parseFloat(act0) - parseFloat(exenta) + parseFloat(iD)) * .16;
-		cantidadCargo.value = tot.toFixed(2);
-		
-		
-		
-	}
+		let tot = parseFloat(iVACargo.value) - parseFloat(monto) - parseFloat(iR) - parseFloat(iP) + parseFloat(iD);
+		impCargo();
 
-	function impCargo(){
-
-		let sum = 0;
-		sum += parseFloat(iVANoCobrado.value);
-		sum += parseFloat(iVARetenido.value);
-		sum += parseFloat(iVAPeriodo.value);
-		sum -= parseFloat(iVAPeriodoDesc.value);
-
-		if(sum.toFixed(2) > parseFloat(iVACargo.value)){
-			if(cantidadCargo.value == ''){
-				cantidadCargo.value = 0;
-			}
-
-			if(cantidadCargoT.value == ''){
-				cantidadCargoT.value = 0;
-			}
-			cantMenor.style.display = 'none';
-			cantMayor.style.display = 'inline';
-			let res = sum - parseFloat(iVACargo.value);
-			cantidadCargo.value = res.toFixed(2);
-			cantidadCargoT.value = res.toFixed(2);
+		/*if(tot < iVACargo.value){
+			cantidadCargo.value = tot.toFixed(2);
+			cantidadCargoF.value = 0;
+			acreditamiento.disabled = true;
 
 		}else{
-			if(cantidadCargoF.value == '' || cantidadCargoF.value == 0){
-				cantidadCargoF.value = 0;
-			}
+			cantidadCargo.value = (tot.toFixed(2)) * -1;
+			cantidadCargoF.value = (tot.toFixed(2)) * -1;
+			acreditamiento.disabled = false;
 
-			if(cantidadCargo_F.value == '' || cantidadCargo_F.value == 0){
-				cantidadCargo_F.value = 0;
-			}
-			cantMenor.style.display = 'inline';
-			cantMayor.style.display = 'none';
-			let res = parseFloat(iVACargo.value) - sum; 
-			cantidadCargo_F.value = res.toFixed(2);
-			cantidadCargoF.value = res.toFixed(2);
+		}*/
+	}
+
+	function ivaRet(monto){
+		let iNC = iVANoCobrado.value;
+		let iP = iVAPeriodo.value;
+		let iD = iVAPeriodoDesc.value;
+
+		if(iNC == ''){
+			iNC = 0;
+		}else{
+			iNC = parseFloat(iNC);
 		}
+		if(iP == ''){
+			iP = 0;
+		}else{
+			iP = parseFloat(iP);
+		}
+		if(iD == ''){
+			iD = 0;
+		}else{
+			iD = parseFloat(iD);
+		}
+		if(monto == ''){
+		monto = 0;
+		}
+		let tot = parseFloat(iVACargo.value) - parseFloat(monto) - parseFloat(iNC) - parseFloat(iP) + parseFloat(iD);
+		impCargo();
+		/*if(tot < iVACargo.value){
+			cantidadCargo.value = tot.toFixed(2);
+			cantidadCargoF.value = 0;
+			acreditamiento.disabled = true;
+		}else{
+			cantidadCargo.value = 0;
+			cantidadCargoF.value = (tot.toFixed(2)) * -1;
+			acreditamiento.disabled = false;
+		}*/
+	}
+
+	function ivaAC(monto){
+		let iNC = iVANoCobrado.value;
+		let iP = iVARetenido.value;
+		let iD = iVAPeriodoDesc.value;
+
+		if(iNC == ''){
+			iNC = 0;
+		}else{
+			iNC = parseFloat(iNC);
+		}
+		if(iP == ''){
+			iP = 0;
+		}else{
+			iP = parseFloat(iP);
+		}
+		if(iD == ''){
+			iD = 0;
+		}else{
+			iD = parseFloat(iD);
+		}
+		if(monto == ''){
+		monto = 0;
+		}
+		let tot = parseFloat(iVACargo.value) - parseFloat(monto) - parseFloat(iNC) - parseFloat(iP) + parseFloat(iD);
+		impCargo();
+		/*if(tot < iVACargo.value){
+			cantidadCargo.value = tot.toFixed(2);
+			cantidadCargoF.value = 0;
+			acreditamiento.disabled = true;
+		}else{
+			cantidadCargo.value = 0;
+			cantidadCargoF.value = (tot.toFixed(2)) * -1;
+			acreditamiento.disabled = false;
+
+		}*/
+	}
+
+	function ivaDev(monto){
+		let iNC = iVANoCobrado.value;
+		let iP = iVARetenido.value;
+		let iD = iVAPeriodo.value;
+
+		if(iNC == ''){
+			iNC = 0;
+		}else{
+			iNC = parseFloat(iNC);
+		}
+		if(iP == ''){
+			iP = 0;
+		}else{
+			iP = parseFloat(iP);
+		}
+		if(iD == ''){
+			iD = 0;
+		}else{
+			iD = parseFloat(iD);
+		}
+		if(monto == ''){
+		monto = 0;
+		}
+		let tot = parseFloat(iVACargo.value) - parseFloat(iD) - parseFloat(iNC) - parseFloat(iP) + parseFloat(monto);
+		impCargo();
+		/*if(tot < iVACargo.value){
+			console.log(tot);
+			cantidadCargo.value = (tot.toFixed(2)) * -1;
+			cantidadCargoF.value = 0;
+			acreditamiento.disabled = true;
+		}else{
+			console.log(tot);
+			cantidadCargo.value = tot.toFixed(2);
+			cantidadCargoF.value = (tot.toFixed(2)) * -1;
+			acreditamiento.disabled = false;
+		}*/
+	}
+
+	function pagoIVA(){
+		
+		
+		if(actGravadas.value == 0 ){
+			alert("Favor de completar las Actividades gravadas del 16%");
+			document.getElementById('deterIVA2').style.display = 'block';
+			document.getElementById('pagoIVA2').style.display = 'none';
+			actGravadas.focus();
+		}else if(iVAPeriodo.value == ''){
+			alert("Favor de completar el IVA acreditable del periodo");
+			document.getElementById('deterIVA2').style.display = 'block';
+			document.getElementById('pagoIVA2').style.display = 'none';
+			iVAPeriodo.focus();
+		}else{
+			document.getElementById('deterIVA2').style.display = 'none';
+			document.getElementById('pagoIVA2').style.display = 'block';
+			impCargo();
+		}
+	}
+	function deterIVA(){
+			document.getElementById('deterIVA2').style.display = 'block';
+			document.getElementById('pagoIVA2').style.display = 'none';
+			impCargo();
+	}
+	function impCargo(){
+			let sum = 0;
+			sum += parseFloat(iVANoCobrado.value);
+			sum += parseFloat(iVARetenido.value);
+			sum += parseFloat(iVAPeriodo.value);
+			sum -= parseFloat(iVAPeriodoDesc.value);
+
+			if(sum.toFixed(2) > parseFloat(iVACargo.value)){
+
+				if(cantidadCargo.value == ''){
+					cantidadCargo.value = 0;
+				}
+
+				if(cantidadCargoT.value == ''){
+					cantidadCargoT.value = 0;
+				}
+				cantMenor.style.display = 'none';
+				cantMayor.style.display = 'inline';
+				let res = sum - parseFloat(iVACargo.value);
+				cantidadCargo.value = res.toFixed(2);
+				cantidadCargoT.value = res.toFixed(2);
+				document.getElementById('txtAcargo2').value = res.toFixed(2);
+				document.getElementById('txtAcargo2').value = cantidadCargoT.value;
+				document.getElementById('txtTotCont2').value = cantidadCargoT.value;
+				document.getElementById('txtTotContrib2').value = cantidadCargoT.value;
+				document.getElementById('txtTotAplic2').value = cantidadCargoT.value;
+				document.getElementById('txtCntAcargo').value = cantidadCargoT.value;
+				document.getElementById('txtAPagar2').value = cantidadCargoT.value;
+				document.getElementById('txtTotAplic2_1').value = 0;
+
+
+			}else{
+				if(cantidadCargoF.value == '' || cantidadCargoF.value == 0){
+					cantidadCargoF.value = 0;
+				}
+
+				if(cantidadCargo_F.value == '' || cantidadCargo_F.value == 0){
+					cantidadCargo_F.value = 0;
+				}
+				cantMenor.style.display = 'inline';
+				cantMayor.style.display = 'none';
+				let res = parseFloat(iVACargo.value) - sum; 
+				cantidadCargo_F.value = res.toFixed(2);
+				cantidadCargoF.value = res.toFixed(2);
+				document.getElementById('txtAcargo2').value = res.toFixed(2);
+				document.getElementById('txtAcargo2').value = parseFloat(cantidadCargoF.value) * -1;
+				document.getElementById('txtTotCont2').value = parseFloat(cantidadCargoF.value) * -1;
+				document.getElementById('txtTotContrib2').value = parseFloat(cantidadCargoF.value) * -1;
+				document.getElementById('txtTotAplic2').value = parseFloat(cantidadCargoF.value) * -1;
+				document.getElementById('txtCntAcargo').value = parseFloat(cantidadCargoF.value) * -1;
+				document.getElementById('txtAPagar2').value = parseFloat(cantidadCargoF.value) * -1;
+				document.getElementById('txtTotAplic2_1').value = 0;
+
+			}
 	}
 
 	function impFavor(monto){
-		let restar = parseFloat(iVAPeriodo.value) - parseFloat(iVACargo.value);
-		let res = restar - monto;
+		let res = parseFloat(cantidadCargo.value) - parseFloat(monto);
 		cantidadCargoT.value = res.toFixed(2);
 	}
 	function msgCaptura(){
@@ -1098,22 +1278,26 @@ $nuevaFecha = date('d-m-Y', strtotime($fechaActual . ' -1 day'));
 		let total = parseFloat(cantidadCargoT.value);
 		total -= monto;
 		sumarApli();
-		document.getElementById('txtCntAcargo').value = total;
 
-		console.log(monto);
 	}
 	function sumarEstimulos(monto){
 		let total = parseFloat(cantidadCargoT.value);
 		total -= monto;
 		sumarApli();
-		document.getElementById('txtCntAcargo').value = total;
 	}
 
 	function sumarApli(){
 		let c = parseFloat(document.getElementById('txtcompensaciones').value);
 		let e = parseFloat(document.getElementById('txtestimulos').value);
 		document.getElementById('txtTotAplic2_1').value = (c + e).toFixed(2);
+		document.getElementById('txtAPagar2').value = (parseFloat(document.getElementById('txtTotContrib2').value) - (c + e)).toFixed(2);
+		if(c == 0 && e == 0){
+			document.getElementById('txtCntAcargo').value =  document.getElementById('txtTotContrib2').value;	
+		}else{
+			document.getElementById('txtCntAcargo').value = ((c + e)).toFixed(2);
+		}
 
 	}
+
 	
 </script>

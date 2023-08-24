@@ -102,6 +102,7 @@ $route['administracion'] = 'CSimulador/administracion';
 $route['isr_1'] = 'CSimulador/isr_1';
 $route['iva_2'] = 'CSimulador/iva_2';
 $route['isr1'] = 'CSimulador/isr1';
+$route['iva2'] = 'CSimulador/iva2';
 $route['findTypeDec'] = 'CSimulador/getTypesStatements';
 $route['getDeclaracion'] = 'CSimulador/getDeclaracion';
 
@@ -109,3 +110,4 @@ $route['res_isr_1'] = 'CResultados/isr_1';
 $route['res_iva_1'] = 'CResultados/iva_1';
 $route['complete'] = 'CResultados/all';
 $route['pdf_isr_1'] = 'CResultados/pdf_isr_1';
+

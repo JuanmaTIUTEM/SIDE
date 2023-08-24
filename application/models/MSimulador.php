@@ -114,4 +114,8 @@ class MSimulador extends CI_Model
 			return false;
 		}
 	}
+
+	function iva2($data){
+		return $data;
+	}
 }

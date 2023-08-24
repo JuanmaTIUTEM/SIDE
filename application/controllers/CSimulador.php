@@ -105,5 +105,11 @@ class CSimulador extends CI_Controller {
 		$result = $this->MSimulador->getDeclaracion($data);
 		print_r(json_encode($result));
 	}
+
+	public function iva2(){
+		$data = json_decode(file_get_contents("php://input"), true);
+		$result = $this->MSimulador->iva2($data);
+		print_r($result);
+	}
 	
 }
